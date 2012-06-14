@@ -1,5 +1,8 @@
 body { padding:2em; background-color: #DDDDDD; font: 62.5% sans-serif; }
-h2 { font-weight:900;font-size:3em; }
+h1,h2 { font-weight:900;font-size:3em; }
+h3 {font-size:2.5em;}
+p,pre {font-size:1.8em;}
+
 span {position:fixed;top:10px;right:10px;}
 /* Base styling */
 input[type=range] {

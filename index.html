@@ -14,15 +14,28 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 <body dir='ltr'>
+	<h1>proSlider</h1>
+	<p>~1.4Kb minified.<br>A tiny jQuery plugin that turns ugly &lt;inputs&gt; into beautiful sliders.</p>
+	
+	<h2>DEMO</h2>
+	
+	<h3>How many?</h3>
 	<form method='post' enctype='application/x-www-form-urlencoded' action='#'>
-    	<h2>How many?</h2>
-		
+		<p>
+			<pre>&lt;input name='amount' type='range' class='slider' min=20 max=30 step=2 value=30&gt;</pre>
+		</p>
 		<input name='amount' type='range' class='slider' min=20 max=30 step=2 value=30>
-		
+		<p>
+			<pre>&lt;input name='amount2' type='range' class='slider radial' min=0 max=50 step=5 value=20&gt;</pre>
+		</p>
 		<input name='amount2' type='range' class='slider radial' min=0 max=50 step=5 value=20>
 	</form>
 
 
-	<script type="text/javascript" src="js/the.js"></script>
+	<script type="text/javascript" src="js/proSlider.min.js"></script>
+	<script type="text/javascript">
+		// The callout
+		$('.slider').proSlider();
+	</script>
 </body>
 </html>
