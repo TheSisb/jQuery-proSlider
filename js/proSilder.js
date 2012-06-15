@@ -19,9 +19,10 @@
 	    // Set new vars
 	    this.width = this.el.prev('.sliderLine').width() - 30, // width
 	    this.slice = this.width / ( (this.max - this.min) / this.step );
+	    this.posFromLeft = (((this.value - this.min) / this.step ) * this.slice );
 			
 	    if (this.value != this.min || this.value != "" || this.value !== undefined)
-			this.bulb.css('left', (((this.value - this.min) / this.step ) * this.slice ) );
+			this.bulb.css('left', this.posFromLeft );
 
 	    // Do the binding
 	    this.bindToSelf( this );
@@ -50,21 +51,26 @@
 	    
 	sliderObj.prototype.bindToSelf = function( self ) { 
 	    // Bind the event
-	    this.bulb.bind('mousedown', function() {
+	    this.bulb.bind('mousedown', function(e) {
 	    	var $this = $(this);
-
+		var $input = $this.next('input');
+		var startX = e.pageX;
+		var diff = 0, val = 0;
+		
 			$(document).bind("mousemove.nsA", function(e){ 
-				var val = (e.pageX-90/2);
+				diff = e.pageX - startX;
+			    	startX = e.pageX;
+			    	self.posFromLeft += diff;
 				
-				if (val < 0 || val > self.width) 
+				if (self.posFromLeft < 0 || self.posFromLeft > self.width) 
 					return;	   
 				 
-				$this.css('left',val);
-
+				$this.css('left',self.posFromLeft);
+			    
 				// Calculate the input value based on bulb position
-				val = self.min + (Math.round(val / self.slice) * self.step);
+				val = self.min + (Math.round(self.posFromLeft / self.slice) * self.step);
 				$this.text(val);
-				$this.next('input').val(val);
+				$input.val(val);
 				
 			}); 
 			$(document).bind('mouseup', function(){
