@@ -57,25 +57,25 @@
 		var startX = e.pageX;
 		var diff = 0, val = 0;
 		
-			$(document).bind("mousemove.proSlider", function(e){ 
-				diff = e.pageX - startX;
-			    	startX = e.pageX;
-			    	self.posFromLeft += diff;
-				
-				if (self.posFromLeft < 0 || self.posFromLeft > self.width) 
-					return;	   
-				 
-				$this.css('left',self.posFromLeft);
-			    
-				// Calculate the input value based on bulb position
-				val = self.min + (Math.round(self.posFromLeft / self.slice) * self.step);
-				$this.text(val);
-				$input.val(val);
-				
-			}); 
-			$(document).bind('mouseup', function(){
-				$(document).unbind("mousemove.proSlider");
-			});
+		$(document).bind("mousemove.proSlider", function(e){ 
+			diff = e.pageX - startX;
+		    	startX = e.pageX;
+		    	self.posFromLeft += diff;
+			
+			if (self.posFromLeft < 0 || self.posFromLeft > self.width) 
+				return;	   
+			 
+			$this.css('left',self.posFromLeft);
+		    
+			// Calculate the input value based on bulb position
+			val = self.min + (Math.round(self.posFromLeft / self.slice) * self.step);
+			$this.text(val);
+			$input.val(val);
+			
+		}); 
+		$(document).bind('mouseup', function(){
+			$(document).unbind("mousemove.proSlider");
+		});
 	    });
 	}
 
