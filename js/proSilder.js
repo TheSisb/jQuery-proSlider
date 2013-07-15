@@ -1,4 +1,4 @@
-(function($){
+(function($, document){
     $.fn.proSlider = function() {
 	
 	function sliderObj(min, max, step, value, classes, el) {
@@ -42,7 +42,7 @@
 	    return true;
 	}
 	    
-    sliderObj.prototype.addMarkup = function() {
+    	sliderObj.prototype.addMarkup = function() {
 	    //Add slider markup
 	    this.el.hide();
 	    this.el.before("<div class='sliderLine " + this.classes + "'><div class='sliderBulb'>"+this.value+"</div></div>");
@@ -57,7 +57,7 @@
 		var startX = e.pageX;
 		var diff = 0, val = 0;
 		
-			$(document).bind("mousemove.nsA", function(e){ 
+			$(document).bind("mousemove.proSlider", function(e){ 
 				diff = e.pageX - startX;
 			    	startX = e.pageX;
 			    	self.posFromLeft += diff;
@@ -74,7 +74,7 @@
 				
 			}); 
 			$(document).bind('mouseup', function(){
-				$(document).unbind("mousemove.nsA");
+				$(document).unbind("mousemove.proSlider");
 			});
 	    });
 	}
@@ -82,15 +82,17 @@
 	    
 	return this.each(function() {
 	   // Create slider object
+	   var $this = $(this);
+	   
 	   new sliderObj(
-				parseInt($(this).attr('min'),10),
-				parseInt($(this).attr('max'),10),
-				parseInt($(this).attr('step'),10),
-				parseInt($(this).attr('value'),10),
-				$(this).attr("class").slice(7),
-				$(this)
-		            );
+		parseInt($this.attr('min'),10),
+		parseInt($this.attr('max'),10),
+		parseInt($this.attr('step'),10),
+		parseInt($this.attr('value'),10),
+		$this.attr("class").slice(7),
+		$this
+           );
         });
     };
     
-})(jQuery);
+})(jQuery, document);
