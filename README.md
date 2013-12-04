@@ -3,6 +3,8 @@ jQuery-proSlider
 
 Turns form input[type=range] into nice sliding UI elements
 
+[SEE DEMO](http://codepen.io/TheSisb/full/ElLhn)
+
 
 How to Use
 ================
